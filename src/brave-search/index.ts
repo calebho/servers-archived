@@ -7,6 +7,11 @@ import {
   ListToolsRequestSchema,
   Tool,
 } from "@modelcontextprotocol/sdk/types.js";
+import { setGlobalDispatcher, fetch, EnvHttpProxyAgent } from "undici";
+
+// Configure HTTP proxy support from environment variables
+const envHttpProxyAgent = new EnvHttpProxyAgent();
+setGlobalDispatcher(envHttpProxyAgent);
 
 const WEB_SEARCH_TOOL: Tool = {
   name: "brave_web_search",
