@@ -7,7 +7,11 @@ import {
   ListToolsRequestSchema,
   Tool,
 } from "@modelcontextprotocol/sdk/types.js";
-import fetch from "node-fetch";
+import { setGlobalDispatcher, fetch, EnvHttpProxyAgent } from "undici";
+
+// Configure HTTP proxy support from environment variables
+const envHttpProxyAgent = new EnvHttpProxyAgent();
+setGlobalDispatcher(envHttpProxyAgent);
 
 // Response interfaces
 interface GoogleMapsResponse {
